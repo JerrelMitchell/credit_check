@@ -1,33 +1,30 @@
+# class with methods that handle the luhn algorithm in 5 steps.
 class CreditCheck
   def initialize(card)
     @card = card
   end
 
+  def digitize
+    @card.digits
+  end
+
   def double_odd_indexes
-    @card.card_number.digits.map.with_index do |number, index|
-      if index.odd?
-        number * 2
-      else
-        number
-      end
+    digitize.map.with_index do |number, index|
+      index.odd? ? number * 2 : number
     end
   end
 
-  def double_digit_sums
+  def sum_double_digits
     double_odd_indexes.map do |number|
-      if number > 9
-        number - 9
-      else
-        number
-      end
+      number > 9 ? number - 9 : number
     end
   end
 
   def total_array_sum
-    double_digit_sums.sum
+    sum_double_digits.sum
   end
 
   def check_digit
-    total_array_sum.digits[0]
+    total_array_sum % 10
   end
 end
