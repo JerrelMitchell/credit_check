@@ -37,7 +37,7 @@ class CreditCheckTest < Minitest::Test
   end
 
   def test_it_returns_a_valid_check_digit_of_zero
-    refute_equal 0, @checker1.check_digit
-    assert_equal 0, @checker2.check_digit
+    refute @checker1.check_digit
+    assert @checker2.check_digit
   end
 end

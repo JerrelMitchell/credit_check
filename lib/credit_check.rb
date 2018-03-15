@@ -25,6 +25,6 @@ class CreditCheck
   end
 
   def check_digit
-    total_array_sum % 10
+    (total_array_sum % 10).zero?
   end
 end
