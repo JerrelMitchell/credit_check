@@ -1,15 +1,15 @@
 require './lib/message'
-require 'pry'
 
 # class that handles conditional statement(s) for runner file
-class Statement
+class CheckConditionals
   def initialize
     @message = Message.new
   end
 
-  def get_new_card
-    new_card = gets.chomp.to_i
+  def retrieve_new_card
+    new_card = gets.strip.to_i
     @card = CreditCheck.new(new_card)
+    failed_validation if new_card < 5
   end
 
   def validate_conditional(input)
@@ -37,20 +37,15 @@ class Statement
     validate_conditional(input)
   end
 
-  def abort_message
-    puts @message.goodbye_footer
-    abort
-  end
-
   def game_loop
-    10.times do
-      get_new_card
-      if @card.check_digit
-        successful_validation
-      elsif !@card.check_digit
-        failed_validation
+    loop do
+      retrieve_new_card
+      case @card.check_digit?
+      when true then successful_validation
+      when false then failed_validation
       else
-        abort_message
+        @message.goodbye_footer
+        abort
       end
     end
   end

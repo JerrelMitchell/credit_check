@@ -5,12 +5,10 @@ require './lib/credit_check'
 # testing methods for CreditCheck class.
 class CreditCheckTest < Minitest::Test
   def setup
-    @valid_card1   = 5_541_808_923_795_240
-    @valid_card2   = 6_011_797_668_867_828
+    @valid_card1   = 6_011_797_668_867_828
     @invalid_card1 = 5_541_801_923_795_240
-    @invalid_card2 = 4_024_007_106_512_380
-    @checker1 = CreditCheck.new(@invalid_card1)
-    @checker2 = CreditCheck.new(@valid_card2)
+    @checker1      = CreditCheck.new(@invalid_card1)
+    @checker2      = CreditCheck.new(@valid_card1)
   end
 
   def test_it_exists

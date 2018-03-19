@@ -1,11 +1,10 @@
 require './lib/credit_check'
 require './lib/message'
-require './lib/statement'
+require './lib/check_conditionals'
 
-message   = Message.new
-statement = Statement.new
+message      = Message.new
+conditionals = CheckConditionals.new
 
 puts message.welcome_header
 puts message.ask_validate_question
-
-statement.game_loop
+conditionals.game_loop
